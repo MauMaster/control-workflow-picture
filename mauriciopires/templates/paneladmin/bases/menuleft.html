@@ -1,0 +1,149 @@
+
+{% load static %} 
+{% load bootstrap4 %}
+        <nav class=" navbar navbar-expand-lg navbar-light bg-light sticky-top  sidebar  ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse " id="navbarNavDropdown">
+          <div class="sidebar-sticky">
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span></span>
+              <a class="d-flex align-items-center text-muted" href="#">
+                <span data-feather="plus-circle"></span>
+              </a>
+            </h6>
+            <ul class="navbar-nav nav flex-column mb-2">
+             <li class="nav-item">
+            <ul class="nav flex-column">
+             <li class="nav-item">
+                    <img src="{{ user.photographers.picture.medium.url}}" class="img-thumbnail" width="180" height="180">
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="" width="" height="" alt=""> {{user.photographers.name}} {{user.photographers.name}} 
+                    </a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link "  href="{% url 'paneladmin_index' %}">
+                  <span data-feather="home"></span>
+                  Painel <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              
+            </ul>
+
+
+            <a class="nav-link " href="#" data-toggle="collapse" data-target="#demo4">
+                    <span data-feather="file-text"></span>
+                   Configuração
+                    <img src="{% static 'svg/arrowdown.svg' %}" width="10" height="10" alt=""></a>
+
+             <div id="demo4" class="collapse">
+            <ul class="navbar-nav nav flex-column mb-2 ">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Last quarter
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Last quarter
+                </a>
+              </li>
+            </ul>
+           </div>
+
+
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#demo3">
+                    <span data-feather="file-text"></span>
+                   Contabilidade
+                    <img src="{% static 'svg/arrowdown.svg' %}" width="10" height="10" alt=""></a>
+
+             <div id="demo3" class="collapse">
+            <ul class="navbar-nav nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_payment' %}"><img src="" width="" height="" alt="">
+                  <span data-feather="file-text"></span>
+                  Cadastrar Pagamento
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_sales' %}">
+                  <span data-feather="file-text"></span>
+                  Filtrar Vendas
+                </a>
+              </li>
+           
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_accounting' %}">
+                  <span data-feather="file-text"></span>
+                  Filtrar Pagamentos
+                </a>
+              </li>
+            </ul>
+           </div>
+
+
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#demo2">
+                    <span data-feather="file-text"></span>
+                   Pedidos
+                    <img src="{% static 'svg/arrowdown.svg' %}" width="10" height="10" alt=""></a>
+
+             <div id="demo2" class="collapse">
+            <ul class="navbar-nav nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_register_images' %}"><img src="" width="" height="" alt="">
+                  <span data-feather="file-text"></span>
+                  Cadastrar Pedido
+                </a>
+              </li>
+              <li class="nav-item">
+                
+                
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_index' %}">
+                  <span data-feather="file-text"></span>
+                  Todos Pedidos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file-text"></span>
+                  Last quarter
+                </a>
+              </li>
+            </ul>
+           </div>
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#demo">
+                    <span data-feather="file-text"></span>
+                    Usúario
+                    <img src="{% static 'svg/arrowdown.svg' %}" width="10" height="10" alt=""></a>
+
+             <div id="demo" class="collapse">
+              <ul class="navbar-nav nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_register' %}"><img src="{" width="" height="" alt="">
+                  <span data-feather="file-text"></span>
+                  Cadastrar Usúario
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'paneladmin_alluser' %}"><img src="" width="" height="" alt="">
+                  <span data-feather="file-text"></span>
+                  Todos Usuários
+                </a>
+              </li>
+            </ul>
+         </div>
+          <ul class="nav flex-column mb-2">
+          <li class="nav-item ">
+          <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+        </li>
+        </ul>
+         </ul>
+        </nav>

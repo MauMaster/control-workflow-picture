@@ -1,0 +1,128 @@
+
+{%extends 'paneladmin/bases/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+ {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+
+                    {% block rightcol %} 
+                    {% include 'paneladmin/bases/menuleft.html' %}
+                    {% endblock %}
+
+                     {% block main %} 
+                      <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-md-24 mb-16">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Cadastrar Usuário</h6>
+                  
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+<form class="exampleone" action="{%  url 'paneladmin_new_register'  %}" method="POST" enctype="multipart/form-data" id="form" name="form" novalidate>
+                {% csrf_token %}
+                 <br>
+                 
+                <div class="form-row">
+                <div class="form-group col-md-4">
+                             {{ form.username | as_crispy_field }}
+                             </div>
+                             <div class="form-group col-md-4">
+                               {{ form.name | as_crispy_field }}
+ </div>
+                               <div class="form-group col-md-4">
+                                 {{ form.lastname | as_crispy_field }}
+                                  </div>
+                                   </div>
+                                    <div class="form-row">
+                <div class="form-group col-md-8">
+                                   {{ form.email | as_crispy_field }}
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                     {{ form.birthday | as_crispy_field }}
+                                      </div>
+                                       </div>
+                                       <div class="form-row">
+                <div class="form-group col-md-4">
+                                       {{ form.phone | as_crispy_field }}
+</div>
+                                       <div class="form-group col-md-4">
+                                         {{ form.cpf | as_crispy_field }}
+</div>
+                                         <div class="form-group col-md-4">
+                                           {{ form.cnpj | as_crispy_field }}
+                                           </div>
+                                           </div>
+                                            
+                                             <div class="form-row">
+                <div class="form-group col-md-4">
+                                               {{ form.address | as_crispy_field }}
+                                               </div>
+
+                                               <div class="form-group col-md-4">
+                                                 {{ form.number | as_crispy_field }}
+                                                 </div>
+
+                                                 <div class="form-group col-md-4">
+                                                   {{ form.district | as_crispy_field }}
+                                                   </div>
+                                                   </div>
+                                                    <div class="form-row">
+                <div class="form-group col-md-4">
+                                                     {{ form.zip_code | as_crispy_field }}
+</div>
+                                                      <div class="form-group col-md-4">
+                                                       {{ form.city | as_crispy_field }}
+</div>
+                                                        <div class="form-group col-md-4">
+                                                       {{ form.state | as_crispy_field }}
+                                                       </div>
+                                                       </div>
+                                                         <div class="form-row">
+                <div class="form-group col-md-4">
+                                                       {{ form.password1 | as_crispy_field }}
+</div>
+                                                       <div class="form-group col-md-8">
+                                                    {{ form.password2 | as_crispy_field }}
+                                                    <div id="divCheckPassword"></div>
+                        <div id="divCheckPassword2"></div>
+                                                        </div>
+                                                        </div>
+                                                         <div class="form-row">
+                <div class="form-group col-md-5">
+                                                         {{ form.picture | as_crispy_field }}
+                                                         </div>
+                                                         <div class="form-group col-md-4">
+                                                         {{ form.type_user | as_crispy_field }}
+                                                         </div>
+                                                        </div>
+                                                       <button type="submit" id="validator" class="btn btn-primary btn-block">Cadastrar</button>
+
+            </form>
+
+<script src="{% static 'js/mask.js' %}"></script>
+<script src="{% static 'js/password.js' %}"></script>
+
+                </div>
+              </div>
+            </div>
+            </div>
+
+
+
+                     
+<script src="{% static 'js/mask.js' %}"></script>
+
+<script src="{% static 'js/255words.js' %}"></script>
+                    {% endblock %}
+                     
+                    
+
+{% block footer %} 
+                   {% include 'paneladmin/bases/menufooter.html' %}
+                    {% endblock %}
+
+                    

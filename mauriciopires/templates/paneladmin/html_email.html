@@ -1,0 +1,10 @@
+{% autoescape off %}
+Olá {{ user.username }}, seja bem vinda(o) ao sistema Mauricio Pires Edições e imagens.
+Para logar em nosso sitema use as seguintes informações:
+Usuário: {{ user.username }}
+Senha:{{ user.photographers.password1 }}
+Lembrando que essa senha é provisória e você pode alterar ela no seu perfil dentro do site.
+
+Clique no link abaixo e veja seu perfil
+http://{{ domain }}
+{% endautoescape %}

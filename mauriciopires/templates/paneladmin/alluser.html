@@ -1,0 +1,64 @@
+{%extends 'paneladmin/bases/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+ {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+
+                    {% block rightcol %} 
+                    {% include 'paneladmin/bases/menuleft.html' %}
+                    {% endblock %}
+
+                     {% block main %} 
+                      
+<br>
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-md-24 mb-16">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Todos Usuários</h6>
+                  
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+
+
+      
+            {% if user.photographers.type_user == 'Admin' %}
+          
+             {% for allusers in allusers %}
+        
+
+    
+            <div class="card " style="width: 20rem; text-align:center;display:inline-block;">
+  <br>
+    <img class="img-thumbnail" src="{{allusers.picture.medium.url}}" alt="Card image cap" width="200" height="200">
+    <div class="card-body">
+      <h5 class="card-title">{{allusers.name}} {{allusers.lastname}}</h5>
+       <a  href="mailto:{{allusers.email}}" >{{allusers.email}}</a>
+      <br>
+      <a  href="https://api.whatsapp.com/send?1=pt_BR&phone={{allusers.phone | cut:' ' | cut:'(' | cut:')' | cut:'-'}}" >{{allusers.phone}}</a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"><button type="submit" id="validator" class="btn btn-primary btn-block">Ver Pefil</button></small>
+    </div>
+   </div>
+   
+   
+  
+  {% endfor %}      
+                           
+            {% elif user.photographers.type_user == 'User' %} ssss {% endif %}
+             
+ </div>
+                </div>
+                </div> 
+                    {% endblock %}
+                   
+                    
+
+{% block footer %} 
+                   {% include 'paneladmin/bases/menufooter.html' %}
+                    {% endblock %}
+
+                    

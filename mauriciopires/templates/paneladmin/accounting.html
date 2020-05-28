@@ -1,0 +1,141 @@
+{%extends 'paneladmin/bases/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+ {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% load mathfilters %}
+
+                    {% block rightcol %} 
+                    {% include 'paneladmin/bases/menuleft.html' %}
+                    {% endblock %}
+
+                     {% block main %} 
+                      
+<br>
+  
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-md-24 mb-16">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Sistema de buscas</h6>
+                  
+                </div>
+                
+                <!-- Card Body -->
+                <div class="card-body">
+               <form method="get">
+                <div class="well">
+                    <h4 style="margin-top: 0">Você pode efetuar as buscas por Mês , Ano ou Cliente:</h4>
+                    <br>
+                    
+                    
+                   
+                   <br>
+                   
+                    <div class="row">
+                    <div class="col-1">
+                    
+                            <label for="checkin">Mês: </label>
+                           {% render_field filter.form.date class="form-control"  maxlength="2 type="number""%}
+                        </div>
+                      
+
+                               <div class="col-2">
+                         <label for="name">Nome: </label>
+                               {% render_field filter.form.name class="form-control" %}
+                               </div>
+                           
+                            <button type="submit" class="btn btn-primary btn-lg "> Procurar</button>
+                       
+                    
+                </div>
+                </div>
+            </form>
+            <br>
+            <hr>
+<br>
+      
+            {% if user.photographers.type_user == 'Admin' %}
+          
+             {% for payment in filter.qs %}
+
+             
+        
+        
+         
+<div class="card-deck mb-3 text-center" style="width: 22rem; text-align:center;display:inline-block;">
+<div class="card mb-4 box-shadow">
+  <div class="card-header"><h4 class="my-0 font-weight-normal">Valor</h4></div>
+  <div class="card-body ">
+    <h3 class="card-title pricing-card-title text-success">R${{payment.value}}</h3>
+      
+  <ul class="list-unstyled mt-3 mb-4">
+    <li >Data: {{payment.date}}</li>
+  
+  </ul>
+</div>
+</div>
+</div>
+
+
+    
+      
+
+  {% endfor %}  
+   <hr>
+   <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header ">
+            <h4 class="my-0 font-weight-normal">Total</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title text-info">R$ {{places_count2.total_amount}}</h1>
+            
+             
+          </div>
+          
+        </div>
+         <div class="card mb-4 box-shadow">
+          <div class="card-header  ">
+            <h4 class="my-0 font-weight-normal">Total Recebido</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title text-success">R$ {{places_count.total_amount}}</h1>
+           
+             
+          </div>
+          
+        </div>
+         <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Pendente</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title text-danger">R$ {{places_count.total_amount|sub:places_count2.total_amount}}</h1>
+            
+             
+          </div>
+          
+        </div>
+  
+ 
+                           
+            {% elif user.photographers.type_user == 'User' %} ssss {% endif %}
+             
+ </div>
+                </div>
+                </div> 
+                </div>
+
+                <script src="{% static 'js/sales_list.js' %}"></script>
+                    {% endblock %}
+                   
+                    
+
+{% block footer %} 
+                   {% include 'paneladmin/bases/menufooter.html' %}
+                    {% endblock %}
+
+                    

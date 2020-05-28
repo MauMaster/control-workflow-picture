@@ -1,0 +1,16 @@
+settings.py
+.idea
+*.sqlite3
+*pyc
+static/media
+.vscode/
+extras/
+
+
+static/
+
+extras/
+
+myvenv/
+
+

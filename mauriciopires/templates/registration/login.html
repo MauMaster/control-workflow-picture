@@ -1,0 +1,63 @@
+{%extends 'paneladmin/bases/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+{% load crispy_forms_tags %}
+ {% block main %}
+ <br>
+<p class="text-secondary">Home / Login</p>
+<div class="card text-white bg-success mb-3">
+  <div class="card-header text-center">Faça seu login</div>
+  <div class="card bg-light text-center ">
+  <div class="card-body text-secondary text-center">
+
+    {% if next %}
+    {% if user.is_authenticated %}
+    <p>Sua conta não tem acesso a esta página. 
+    Para prosseguir, por favor, faça o login com uma conta que tenha acesso.</p>
+    {% else %}
+    <p></p>
+    {% endif %}
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Sua conta não tem acesso a esta página. 
+    Para prosseguir, por favor, faça o login com uma conta que tenha acesso.</p>
+    {% else %}
+    <p></p>
+    {% endif %}
+{% endif %}
+{% if form.errors %}
+<p>Seu nome de usuário e senha não correspondem. Por favor, tente novamente.</p>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}" class="form-signin">
+{% csrf_token %}
+<div class="form-row "> 
+  <div class="form-group col-md-12 ">
+    {{ form.username.label_tag }}
+    {{ form.username }}
+  </div>
+</div>
+  <div class="form-row"> 
+    <div class="form-group col-md-12">
+    {{ form.password.label_tag }}
+    {{ form.password }}
+  </div>
+</div>
+
+<input type="submit" class="btn btn-primary" value="login">
+<input type="hidden" name="next" value="{% url 'paneladmin_index' %}">
+</form>
+
+<br>
+<p><a class="btn btn-light btn-sm" href="" role="button">Esqueceu a senha?</a></p>
+<br>
+<p><a class="btn btn-light btn-sm" href="" role="button">Não tem cadastro? Cadastre-se agora mesmo</a></p>
+
+  </div>
+</div>
+</div>
+  
+{% endblock %}

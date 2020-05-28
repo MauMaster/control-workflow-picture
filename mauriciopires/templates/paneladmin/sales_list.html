@@ -1,0 +1,129 @@
+{%extends 'paneladmin/bases/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+ {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% load mathfilters %}
+
+                    {% block rightcol %} 
+                    {% include 'paneladmin/bases/menuleft.html' %}
+                    {% endblock %}
+
+                     {% block main %} 
+                      
+<br>
+  
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-md-24 mb-16">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Sistema de busca</h6>
+                  
+                </div>
+                
+                <!-- Card Body -->
+                <div class="card-body">
+               <form method="get">
+                <div class="well">
+                    <h4 style="margin-top: 0">Você pode efetuar as buscas por Dia, Mês , Ano ou Cliente:</h4>
+                    <br>
+                    
+                    
+                   
+                   <br>
+                   
+                    <div class="row">
+                    <div class="col-1">
+                    
+                            <label for="checkin">Dia: </label>
+                           {% render_field filter.form.checkin class="form-control"  maxlength="2 type="number""%}
+                        </div>
+                        <div class="col-1">
+                        <label for="checkin2">Mês: </label>
+                           {% render_field filter.form.checkin1 class="form-control" maxlength="2"  type="number"%}
+                        </div>
+                        <div class="col-1">
+                         <label for="checkin3">Ano: </label>
+                               {% render_field filter.form.checkin2 class="form-control" maxlength="4" type="number"%}
+                               </div>
+
+                               <div class="col-2">
+                         <label for="name">Nome: </label>
+                               {% render_field filter.form.name class="form-control" %}
+                               </div>
+                           
+                            <button type="submit" class="btn btn-primary btn-lg "> Procurar</button>
+                       
+                    
+                </div>
+                </div>
+            </form>
+            <br>
+            <hr>
+<br>
+      
+            {% if user.photographers.type_user == 'Admin' %}
+          
+             {% for images in filter.qs %}
+
+             
+        
+        
+         
+<div class="card-deck mb-3 text-center" style="width: 22rem; text-align:center;display:inline-block;">
+<div class="card mb-4 box-shadow">
+  <div class="card-header"><h4 class="my-0 font-weight-normal">{{images.name}}</h4></div>
+  <div class="card-body ">
+    <h3 class="card-title pricing-card-title text-success">R${{images.price | mul:images.pictures}}</h3>
+      
+  <ul class="list-unstyled mt-3 mb-4">
+    <li >Recebida: {{images.checkin}}</li>
+    <li > {% if  images.checkout == None %} <div class="text-danger">Ainda em aberto </div>{% else%}Entregue: {{images.checkout}} {% endif %} </li>
+    <li > Preço: {{images.price}}</li>
+     <li >Total de Fotos: {{images.pictures}} </li>
+      <a class="nav-link "  href="">
+     <li>Alterar</li>
+     </a>
+  </ul>
+</div>
+</div>
+</div>
+    
+      
+
+  {% endfor %}  
+   <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% if  places_count.total_amount == None or places_pictures.total_amount_pictures == None %} <div class="text">Ops!!!</div>{% else%}Total</h4>{% endif %}
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title text-success">{% if  places_count.total_amount == None %} <div class="text">Busca retornou sem resultados</div>{% else%} R$ {{places_count.total_amount}} {% endif %}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              {% if  places_pictures.total_amount_pictures == None %} <div class="text-danger">Por favor selecione outro período</div>{% else%}<li>Total de Fotos: {{places_pictures.total_amount_pictures}} {% endif %}</li>
+              
+             
+          </div>
+        </div>
+  
+ 
+                           
+            {% elif user.photographers.type_user == 'User' %} ssss {% endif %}
+             
+ </div>
+                </div>
+                </div> 
+                </div>
+
+                <script src="{% static 'js/sales_list.js' %}"></script>
+                    {% endblock %}
+                   
+                    
+
+{% block footer %} 
+                   {% include 'paneladmin/bases/menufooter.html' %}
+                    {% endblock %}
+
+                    
