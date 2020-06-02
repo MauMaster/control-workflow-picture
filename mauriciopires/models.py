@@ -97,7 +97,7 @@ class Images(models.Model):
 class Payment(models.Model):
     name = models.ForeignKey(Photographers, on_delete=models.CASCADE, blank=False)
     value = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)
-    date = models.DateField (max_length=50, blank=False)
+    checkin = models.DateField (max_length=50, blank=False)
     
     def __str__(self):
-        return str(self.name)  + ' - ' + str(self.value) + ' - ' + str(self.date)
+        return str(self.name)  + ' - ' + str(self.value) + ' - ' + str(self.checkin)

@@ -127,14 +127,7 @@ def register_images(request):
     return render(request, 'paneladmin/images.html', {'form': form})
 
 
-def search(request):
-    sales_list = Images.objects.all() 
-    sales_filter = ImagesFilter(request.GET, queryset=sales_list)
-    # na pesquisa abaixo para dar a soma, precisei passar como parametro o sales_filter.qs, assim elle vai da a soma apenas referente a pesquisa gerada no filtro e não em todo o BD
-    # e passei a condição F que permite que eu trabalhe com dois campos distintos matematicos, no caso abaixo peguei o numero de fotos e multipliquei pelo preço que pode variar
-    places_count = sales_filter.qs.aggregate(total_amount=Sum(F('pictures') * F ('price'),output_field=CharField()))
-    places_pictures = sales_filter.qs.aggregate(total_amount_pictures=Sum('pictures'))
-    return render(request, 'paneladmin/sales_list.html', {'filter': sales_filter, 'places_count': places_count, 'places_pictures': places_pictures})
+
     
 
 
@@ -156,18 +149,29 @@ def register_payment(request):
         form = PaymentForm()
     return render(request, 'paneladmin/payment.html', {'form': form})
 
-def search2(request):
-    payment_list = Payment.objects.all() 
-    payment_filter = PaymentFilter(request.GET, queryset=payment_list)
-    places_count = payment_filter.qs.aggregate(total_amount=Sum(F('value'),output_field=CharField()))
+    
+def search(request):
     sales_list = Images.objects.all() 
     sales_filter = ImagesFilter(request.GET, queryset=sales_list)
     # na pesquisa abaixo para dar a soma, precisei passar como parametro o sales_filter.qs, assim elle vai da a soma apenas referente a pesquisa gerada no filtro e não em todo o BD
     # e passei a condição F que permite que eu trabalhe com dois campos distintos matematicos, no caso abaixo peguei o numero de fotos e multipliquei pelo preço que pode variar
-    places_count2 = sales_filter.qs.aggregate(total_amount=Sum(F('pictures') * F ('price'),output_field=CharField()))
+    places_count = sales_filter.qs.aggregate(total_amount=Sum(F('pictures') * F ('price'),output_field=CharField()))
     places_pictures = sales_filter.qs.aggregate(total_amount_pictures=Sum('pictures'))
+    return render(request, 'paneladmin/sales_list.html', {'filter': sales_filter, 'places_count': places_count, 'places_pictures': places_pictures})
+
+def search2(request):
+    payment_list = Payment.objects.all() 
+    payment_filter = PaymentFilter(request.GET, queryset=payment_list)
+    places_count = payment_filter.qs.aggregate(total_amount=Sum(F('value'),output_field=CharField()))
+        
+
+    sales_list = Images.objects.all() 
+    sales_filter = ImagesFilter(request.GET, queryset=sales_list)
+    places_count2 = sales_filter.qs.aggregate(total_amount_sale=Sum(F('pictures') * F ('price'),output_field=CharField()))
+    places_pictures = sales_filter.qs.aggregate(total_amount_sale=Sum('pictures'))
+        
    
-    return render(request, 'paneladmin/accounting.html', {'filter': payment_filter, 'places_count': places_count, 'places_count2': places_count2})
+    return render(request, 'paneladmin/payments_list.html', {'filter': payment_filter,  'places_count': places_count, 'places_count2': places_count2, 'places_pictures':places_pictures})
 
 def ImagesUpdate(request,  id):
     

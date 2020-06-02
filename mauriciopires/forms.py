@@ -192,7 +192,7 @@ class PaymentForm(forms.ModelForm):
                                             'placeholder': 'numero'}))
     
 
-       date = forms.DateField(required=True, label='Recebidas', widget=DatePickerInput(format='%d/%m/%Y'))
+       checkin = forms.DateField(required=True, label='Recebidas', widget=DatePickerInput(format='%d/%m/%Y'))
 
        
        

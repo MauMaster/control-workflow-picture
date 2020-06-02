@@ -22,12 +22,14 @@ class ImagesFilter(django_filters.FilterSet):
         fields = ['name', 'checkin']
 
 class PaymentFilter(django_filters.FilterSet):
-    date = django_filters.NumberFilter(widget=DatePickerInput(format='%m'),field_name='date', lookup_expr='month'  )
+    checkin1 = django_filters.NumberFilter(widget=DatePickerInput(format='%m'),field_name='checkin', lookup_expr='month'  )
+    checkin2 = django_filters.NumberFilter(widget=DatePickerInput(format='%Y'),field_name='checkin', lookup_expr='year'  )
+        
     
     # usando o name__photographers eu estou dizendo que quero busca o name da tabela photographes, desse modo terei um boxlistt em meu template
     name__photographers =  django_filters.CharFilter(lookup_expr='icontains', field_name='name')
      
     class Meta:
         model = Payment
-        fields = ['name', 'date']
+        fields = ['name', 'checkin']
 

@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^register_payment/$', register_payment, name='paneladmin_register_payment'),
     url(r'^imagens_update/(?P<id>\\d+)/$', views.ImagesUpdate, 
      name='paneladmin_imagens_update'),
+    url(r'^payments_list/$', search2, name='paneladmin_payments_list'),
    
      
     
